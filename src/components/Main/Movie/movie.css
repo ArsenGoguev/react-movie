@@ -1,0 +1,36 @@
+.movie {
+  box-shadow: 0px 4px 12px 0px #00000026;
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  width: 450px;
+  height: 280px;
+  overflow: hidden;
+}
+
+.movie__cover {
+  border-radius: 0 !important;
+  min-width: 183px;
+  max-width: 183px;
+  min-height: 100%;
+}
+
+.movie__title {
+  margin: 0 !important;
+  font-size: 20px !important;
+}
+
+.movie__release-date {
+  font-size: 12;
+  color: #827E7E;
+}
+
+.movie__overview {
+  min-width: auto; 
+  font-size: 12px !important;
+  line-height: 22px !important;
+}
+
+.ant-card-body {
+  padding-top: 10px !important;
+}

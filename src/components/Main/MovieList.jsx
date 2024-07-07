@@ -5,11 +5,9 @@ import PropTypes from 'prop-types'
 import Movie from './Movie/Movie.jsx'
 import './movieList.css'
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies, loading }) {
   const movieList = movies.map((mov) => {
-    return (
-      <Movie key={mov.id} overview={mov.overview} date={mov.release_date} poster={mov.poster_path} title={mov.title} />
-    )
+    return <Movie key={mov.id} movie={mov} loading={loading} />
   })
 
   return (
@@ -21,4 +19,5 @@ export default function MovieList({ movies }) {
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool.isRequired,
 }

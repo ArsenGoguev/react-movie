@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import './app.css'
 
 import Tabs from './Header/Tabs.jsx'
+import SearchBar from './Header/SearchBar.jsx'
 import MovieList from './Main/MovieList.jsx'
 import Footer from './Footer/Footer.jsx'
 
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <div className="movies-app">
       <Tabs />
+      <SearchBar />
       <MovieList movies={movies} loading={loading} error={error} />
       <Footer />
     </div>

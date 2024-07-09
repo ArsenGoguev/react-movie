@@ -8,8 +8,8 @@ export default function LoadedMovie({ loading, movie }) {
   const { overview, release_date: date, poster_path: poster, title } = movie
   let description = overview
 
-  if (overview.trim().length > 190) {
-    description = overview.slice(0, 190) + '...'
+  if (overview.length > 170) {
+    description = overview.slice(0, 170) + '...'
   }
 
   return (
@@ -26,9 +26,9 @@ export default function LoadedMovie({ loading, movie }) {
             <Typography.Title className="movie__title" level={3}>
               {title}
             </Typography.Title>
-            <span className="movie__release-date">{date ? format(date, 'PP') : `Release date is not found`}</span>
+            <span className="movie__release-date">{date ? format(date, 'PPP') : `Release date is not found`}</span>
             <Flex>
-              <Tag>Genre</Tag>
+              <Tag className="movie__genre">Genre</Tag>
             </Flex>
             <Typography className="movie__overview">
               {description ? description : 'This movie has no description'}

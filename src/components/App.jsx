@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from 'react'
 
-import './app.css'
+import './styles/app.css'
 
-import Tabs from './Header/Tabs.jsx'
-import SearchBar from './Header/SearchBar.jsx'
-import MovieList from './Main/MovieList.jsx'
-import Footer from './Footer/Footer.jsx'
+import Tabs from './Tabs/Tabs.jsx'
+import SearchBar from './SearchBar/SearchBar.jsx'
+import MovieList from './Movies/MovieList.jsx'
+import Navigation from './Navigation/Navigation.jsx'
 
 export default function App() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState()
-  const [totalMovies, setTotalMovies] = useState()
+  const [totalPages, setTotalPages] = useState()
+  const [searchingMovie, setSearchingMovie] = useState()
+  const _apiLink =
+    'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-EN&api_key=8a8be1fee5490beecdd49d89d9208916'
 
-  async function getMovies(query) {
+  async function getMovies(url) {
     let res
-    if (query && !query.startsWith(' ')) {
-      res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1&api_key=8a8be1fee5490beecdd49d89d9208916`
-      )
+    if (!url) {
+      setSearchingMovie('&query=return')
+      res = await fetch(_apiLink + '&query=return')
     } else {
-      res = await fetch(
-        'https://api.themoviedb.org/3/search/movie?query=return&include_adult=false&language=en-US&page=1&api_key=8a8be1fee5490beecdd49d89d9208916'
-      )
+      res = await fetch(_apiLink + url)
     }
-    if (!res.ok) {
-      throw new Error(`Error ${res.status}`)
-    }
+    if (!res.ok) throw new Error(`Error ${res.status}`)
     const body = await res.json()
-    setTotalMovies(body.total_results)
+    setTotalPages(body.total_pages)
     const result = await body.results
     setMovies([...result])
     setLoading(false)
@@ -43,9 +41,14 @@ export default function App() {
   return (
     <div className="movies-app">
       <Tabs />
-      <SearchBar getMovies={getMovies} setLoading={setLoading} />
+      <SearchBar getMovies={getMovies} setLoading={setLoading} setSearchingMovie={setSearchingMovie} />
       <MovieList movies={movies} loading={loading} error={error} />
-      <Footer totalMovies={totalMovies} />
+      <Navigation
+        totalPages={totalPages}
+        getMovies={getMovies}
+        setLoading={setLoading}
+        searchingMovie={searchingMovie}
+      />
     </div>
   )
 }

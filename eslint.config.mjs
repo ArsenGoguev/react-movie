@@ -2,7 +2,6 @@ import globals from 'globals'
 import pluginJs from '@eslint/js'
 import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js'
 import { fixupConfigRules } from '@eslint/compat'
-import prettier from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 import pluginImport from 'eslint-plugin-import'
 import pluginReact from 'eslint-plugin-react'
@@ -31,7 +30,6 @@ export default [
   },
   {
     plugins: {
-      '@prettier': prettier,
       '@import': pluginImport,
       '@react': pluginReact,
     },
@@ -42,7 +40,6 @@ export default [
   {
     rules: {
       indent: ['error', 2],
-      '@prettier/prettier': 'error',
       'linebreak-style': [0, 'unix'],
       quotes: ['error', 'single'],
       semi: ['error', 'never'],

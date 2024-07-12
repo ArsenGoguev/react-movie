@@ -8,7 +8,8 @@
 }
 
 .movie__info {
-  padding: 10px 20px 10px 0;
+  padding: 10px 20px 0 0;
+  overflow: hidden;
 }
 
 .movie__cover {
@@ -33,10 +34,15 @@
 }
 
 .movie__overview {
-  min-width: auto;
   font-size: 12px;
   line-height: 22px;
   font-family: Inter;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
 }
 
 .ant-card-body {

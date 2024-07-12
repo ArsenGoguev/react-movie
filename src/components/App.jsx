@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-import './styles/app.css'
-
-import Tabs from './Tabs/Tabs.jsx'
+import TabMenu from './TabMenu/TabMenu.jsx'
 import SearchBar from './SearchBar/SearchBar.jsx'
 import MovieList from './Movies/MovieList.jsx'
 import Navigation from './Navigation/Navigation.jsx'
+import { createGuestSession, getPopularMovies } from './movieService/movieService.js'
+import './styles/app.css'
 
 export default function App() {
   const [movies, setMovies] = useState([])
@@ -13,41 +13,41 @@ export default function App() {
   const [error, setError] = useState()
   const [totalPages, setTotalPages] = useState()
   const [searchingMovie, setSearchingMovie] = useState()
-  const _apiLink =
-    'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-EN&api_key=8a8be1fee5490beecdd49d89d9208916'
-
-  async function getMovies(url) {
-    let res
-    if (!url) {
-      setSearchingMovie('&query=return')
-      res = await fetch(_apiLink + '&query=return')
-    } else {
-      res = await fetch(_apiLink + url)
-    }
-    if (!res.ok) throw new Error(`Error ${res.status}`)
-    const body = await res.json()
-    setTotalPages(body.total_pages)
-    const result = await body.results
-    setMovies([...result])
-    setLoading(false)
-  }
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    getMovies().catch((err) => {
-      setError(err)
-    })
+    createGuestSession()
+    getPopularMovies()
+      .then((res) => {
+        setTotalPages(res.total_pages)
+        const result = res.results
+        setMovies([...result])
+        setLoading(false)
+      })
+      .catch((err) => setError(err))
   }, []) // eslint-disable-line
 
   return (
     <div className="movies-app">
-      <Tabs />
-      <SearchBar getMovies={getMovies} setLoading={setLoading} setSearchingMovie={setSearchingMovie} />
+      <TabMenu />
+      <SearchBar
+        setLoading={setLoading}
+        setSearchingMovie={setSearchingMovie}
+        setError={setError}
+        setMovies={setMovies}
+        setTotalPages={setTotalPages}
+        setCurrentPage={setCurrentPage}
+      />
       <MovieList movies={movies} loading={loading} error={error} />
       <Navigation
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
         totalPages={totalPages}
-        getMovies={getMovies}
         setLoading={setLoading}
         searchingMovie={searchingMovie}
+        setError={setError}
+        setMovies={setMovies}
+        setTotalPages={setTotalPages}
       />
     </div>
   )

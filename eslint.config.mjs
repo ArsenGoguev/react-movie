@@ -4,6 +4,7 @@ import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js'
 import { fixupConfigRules } from '@eslint/compat'
 import prettierConfig from 'eslint-config-prettier'
 import pluginImport from 'eslint-plugin-import'
+import prettier from 'eslint-plugin-prettier'
 import pluginReact from 'eslint-plugin-react'
 import babelParser from '@babel/eslint-parser'
 
@@ -30,6 +31,7 @@ export default [
   },
   {
     plugins: {
+      '@prettier': prettier,
       '@import': pluginImport,
       '@react': pluginReact,
     },
@@ -41,6 +43,7 @@ export default [
     rules: {
       indent: ['error', 2],
       'linebreak-style': [0, 'unix'],
+      '@prettier/prettier': 'error',
       quotes: ['error', 'single'],
       semi: ['error', 'never'],
       '@react/react-in-jsx-scope': 'off',

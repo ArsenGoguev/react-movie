@@ -1,15 +1,43 @@
 import React from 'react'
 import { Pagination, ConfigProvider } from 'antd'
-import './navigation.css'
 import PropTypes from 'prop-types'
 
-export default function Navigation({ totalPages, getMovies, setLoading, searchingMovie }) {
+import { searchMovies, getPopularMovies } from '../movieService/movieService'
+
+export default function Navigation({
+  totalPages,
+  setLoading,
+  searchingMovie,
+  setError,
+  setTotalPages,
+  setMovies,
+  setCurrentPage,
+  currentPage,
+}) {
   function getMoviesByPage(page) {
-    setLoading(true)
-    getMovies(searchingMovie + `&page=${page}`)
+    if (searchingMovie) {
+      setCurrentPage(page)
+      setLoading(true)
+      searchMovies(searchingMovie, page)
+        .then((json) => {
+          setTotalPages(json.total_pages)
+          setMovies([...json.results])
+          setLoading(false)
+        })
+        .catch((err) => setError(err))
+    } else {
+      setCurrentPage(page)
+      getPopularMovies(page)
+        .then((res) => {
+          setTotalPages(res.total_pages)
+          const result = res.results
+          setMovies([...result])
+          setLoading(false)
+        })
+        .catch((err) => setError(err))
+    }
   }
 
-  console.log(totalPages)
   return (
     <ConfigProvider
       theme={{
@@ -25,7 +53,7 @@ export default function Navigation({ totalPages, getMovies, setLoading, searchin
       }}
     >
       <Pagination
-        className="pagination"
+        current={currentPage}
         defaultCurrent={1}
         hideOnSinglePage
         pageSize={1}
@@ -41,8 +69,10 @@ export default function Navigation({ totalPages, getMovies, setLoading, searchin
 Navigation.propTypes = {
   totalPages: PropTypes.number,
   searchingMovie: PropTypes.string,
-  getMovies: PropTypes.func.isRequired,
   setLoading: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
+  setTotalPages: PropTypes.func.isRequired,
+  setMovies: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
 }
-
-// сделать, чтобы при поиске по другому названию, пагинация переходила на 1

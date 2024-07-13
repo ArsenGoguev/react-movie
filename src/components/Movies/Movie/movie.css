@@ -19,6 +19,7 @@
 }
 
 .movie__title {
+  width: 200px;
   margin: 0 !important;
   font-size: 20px !important;
 }
@@ -26,10 +27,6 @@
 .movie__release-date {
   font-size: 12px;
   color: #827e7e;
-  font-family: Inter;
-}
-
-.movie__genre {
   font-family: Inter;
 }
 

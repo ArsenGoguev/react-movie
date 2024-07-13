@@ -1,0 +1,20 @@
+.movie__rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: #E9D100 2px solid;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 3px;
+  background-color: white;
+}
+
+.movie__rating-num {
+  width: 30px;
+  height: 30px;
+  font-family: Inter;
+  position: relative;
+  right: 1.5px;
+}

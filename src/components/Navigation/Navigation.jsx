@@ -12,7 +12,7 @@ export default function Navigation() {
     setLoading(true)
     setCurrentPage(page)
 
-    switch (searchMovies) {
+    switch (searchingMovie) {
       case 'rated':
         getData(getRatedMovies, page)
         break

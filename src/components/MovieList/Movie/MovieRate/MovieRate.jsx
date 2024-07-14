@@ -3,7 +3,7 @@ import { ConfigProvider, Rate } from 'antd'
 import './movieRate.css'
 import PropTypes from 'prop-types'
 
-import { setMovieRating, deleteMovieRate } from '../../../movieService/moviesAppService'
+import { setMovieRating, deleteMovieRate } from '../../../../services/moviesAppService'
 
 export default function MovieRate({ movie }) {
   const { id: movieID, rating } = movie

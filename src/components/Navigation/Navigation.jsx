@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Pagination, ConfigProvider } from 'antd'
 
-import { searchMovies, getPopularMovies, getRatedMovies } from '../movieService/moviesAppService'
+import { searchMovies, getPopularMovies, getRatedMovies } from '../../services/moviesAppService.js'
 import { MoviesAppContext } from '../Context/Context.js'
 
 export default function Navigation() {

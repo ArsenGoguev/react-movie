@@ -26,6 +26,12 @@
   width: 200px;
   margin: 0 !important;
   font-size: 20px !important;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .movie__release-date {
@@ -58,6 +64,10 @@
   .movie {
     width: 100%;
   }
+
+  .movie__title {
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -75,14 +85,7 @@
   }
 
   .movie__title {
-    font-size: 18px;
     width: 190px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
   }
 
   .movie__cover {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
+import { createGuestSession, getGenres, getPopularMovies } from '../services/moviesAppService.js'
+
 import { MoviesAppContext } from './Context/Context.js'
 import TabMenu from './TabMenu/TabMenu.jsx'
 import SearchBar from './SearchBar/SearchBar.jsx'
-import MovieList from './Movies/MovieList.jsx'
+import MovieList from './MovieList/MovieList.jsx'
 import Navigation from './Navigation/Navigation.jsx'
-import { createGuestSession, getGenres, getPopularMovies } from './movieService/moviesAppService.js'
 import './styles/app.css'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         setTotalPages(json.total_pages)
         setMovies([...json.results])
         setLoading(false)
+        setError(false)
       })
       .catch((err) => setError(err))
   }

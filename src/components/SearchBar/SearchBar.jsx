@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Form, Input } from 'antd'
 import { debounce } from 'lodash'
 
-import { searchMovies, getPopularMovies } from '../movieService/moviesAppService'
+import { searchMovies, getPopularMovies } from '../../services/moviesAppService.js'
 import { MoviesAppContext } from '../Context/Context.js'
 import './searchBar.css'
 

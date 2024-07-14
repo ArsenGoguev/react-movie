@@ -1,28 +1,21 @@
 import React, { useContext } from 'react'
-import { Flex } from 'antd'
 import { Alert, Spin } from 'antd'
 
 import { MoviesAppContext } from '../Context/Context.js'
 
-import Movie from './Movie/Movie.jsx'
+import Movies from './Movies.jsx'
+import RatedMovies from './RatedMovies.jsx'
 import './movieList.css'
 
 export default function MovieList() {
-  const { movies, loading, error, searchingMovie } = useContext(MoviesAppContext)
+  const { movies, error, searchingMovie } = useContext(MoviesAppContext)
 
-  const movieList = movies.map((mov) => {
-    return <Movie key={mov.id} movie={mov} loading={loading} />
-  })
-
-  if (error) {
-    return (
-      <Alert
-        className="movie-list--error"
-        type="error"
-        message={error.message}
-        description="Error! Something is wrong."
-      />
-    )
+  if (movies.length > 0) {
+    if (searchingMovie === 'rated') {
+      return <RatedMovies />
+    } else {
+      return <Movies />
+    }
   } else if (movies.length === 0 && !error) {
     if (searchingMovie === 'popular') {
       return <Spin fullscreen style={{ marginTop: 34, marginBottom: 34 }} size="large" tip="Loading data" />
@@ -36,11 +29,5 @@ export default function MovieList() {
         />
       )
     }
-  } else {
-    return (
-      <Flex className="movie-list" wrap justify="space-between">
-        {movieList}
-      </Flex>
-    )
   }
 }

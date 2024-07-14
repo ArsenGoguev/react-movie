@@ -1,23 +1,24 @@
 import React, { useContext } from 'react'
 import { Tabs } from 'antd'
 
+import { getRatedMovies, getPopularMovies } from '../../services/moviesAppService.js'
 import { MoviesAppContext } from '../Context/Context.js'
 import './tabMenu.css'
 
 export default function TabMenu() {
-  const { setLoading, setSearchingMovie, setError, setCurrentPage } = useContext(MoviesAppContext)
+  const { setLoading, setSearchingMovie, setError, setCurrentPage, getData } = useContext(MoviesAppContext)
 
   function onChangeTab(key) {
     try {
       setLoading(true)
       setCurrentPage(1)
-
-      switch (key) {
-        case '2':
-          setSearchingMovie('rated')
-          break
-        default:
-          setSearchingMovie('popular')
+      setError(false)
+      if (key === '2') {
+        setSearchingMovie('rated')
+        getData(getRatedMovies)
+      } else {
+        setSearchingMovie('popular')
+        getData(getPopularMovies)
       }
     } catch (error) {
       setLoading(false)

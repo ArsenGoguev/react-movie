@@ -26,7 +26,10 @@ export default function App() {
         setLoading(false)
         setError(false)
       })
-      .catch((err) => setError(err))
+      .catch((err) => {
+        setError(true)
+        console.log(err)
+      })
   }
 
   const contextValue = {

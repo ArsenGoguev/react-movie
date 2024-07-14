@@ -4,3 +4,10 @@
   right: 20px;
   background-color: #fff;
 }
+
+@media (max-width: 520px) {
+  .movie__stars {
+    bottom: 10px;
+    right: 10px;
+  }
+}

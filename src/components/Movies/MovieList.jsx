@@ -5,6 +5,7 @@ import { Alert, Spin } from 'antd'
 import { MoviesAppContext } from '../Context/Context.js'
 
 import Movie from './Movie/Movie.jsx'
+import './movieList.css'
 
 export default function MovieList() {
   const { movies, loading, error, searchingMovie } = useContext(MoviesAppContext)
@@ -16,7 +17,7 @@ export default function MovieList() {
   if (error) {
     return (
       <Alert
-        style={{ marginTop: 34, marginBottom: 34 }}
+        className="movie-list--error"
         type="error"
         message={error.message}
         description="Error! Something is wrong."
@@ -28,7 +29,7 @@ export default function MovieList() {
     } else {
       return (
         <Alert
-          style={{ marginTop: 34, marginBottom: 34 }}
+          className="movie-list--not-found"
           type="warning"
           message={'No movies were found for your search'}
           description="You may have entered the wrong movie title. Please try to enter a different title."
@@ -37,7 +38,7 @@ export default function MovieList() {
     }
   } else {
     return (
-      <Flex style={{ marginTop: 34, marginBottom: 34 }} gap={36} wrap justify="space-between">
+      <Flex className="movie-list" wrap justify="space-between">
         {movieList}
       </Flex>
     )

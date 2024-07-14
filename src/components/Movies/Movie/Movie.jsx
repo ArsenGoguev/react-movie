@@ -18,7 +18,7 @@ export default function LoadedMovie({ loading, movie }) {
   return (
     <Card className="movie" size="default" loading={loading}>
       <Skeleton loading={loading} active>
-        <Flex gap={20}>
+        <Flex className="movie__wrapper">
           <Image className="movie__cover" alt="Movie cover" src={poster} fallback={notFoundImage} />
           <Flex className="movie__info" vertical gap={7}>
             <Typography.Title className="movie__title" level={3}>

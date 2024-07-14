@@ -4,6 +4,7 @@ import { debounce } from 'lodash'
 
 import { searchMovies, getPopularMovies } from '../movieService/moviesAppService'
 import { MoviesAppContext } from '../Context/Context.js'
+import './searchBar.css'
 
 export default function SearchBar() {
   const { setLoading, setSearchingMovie, setCurrentPage, searchingMovie, getData } = useContext(MoviesAppContext)
@@ -25,7 +26,7 @@ export default function SearchBar() {
     return null
   } else {
     return (
-      <Form>
+      <Form className="search-bar">
         <Input placeholder="Type to search..." onChange={(e) => getMoviesByQuery(e.target.value)} />
       </Form>
     )

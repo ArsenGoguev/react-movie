@@ -7,6 +7,10 @@
   overflow: hidden;
 }
 
+.movie__wrapper {
+  gap: 20px;
+}
+
 .movie__info {
   padding: 10px 20px 0 0;
   overflow: hidden;
@@ -48,4 +52,50 @@
 
 .ant-card-loading {
   padding: 30px;
+}
+
+@media (max-width: 1009px) {
+  .movie {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .movie {
+    height: 275px;
+  }
+
+  .movie__wrapper {
+    gap: 10px;
+  }
+
+  .movie__info {
+    padding: 10px 20px 0 0;
+    overflow: hidden;
+  }
+
+  .movie__title {
+    font-size: 18px;
+    width: 190px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .movie__cover {
+    width: 105px !important;
+    min-height: auto;
+    max-height: 154px;
+    padding: 10px 0 10px 10px;
+  }
+
+  .movie__overview {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    right: 20px;
+  }
 }

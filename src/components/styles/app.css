@@ -19,6 +19,13 @@ body {
   width: 1010px;
   min-height: 100vh;
   height: 100%;
-  padding: 20px 36px;
+  padding: 10px 36px 20px;
   margin: 0 auto;
+}
+
+@media (max-width: 1009px) {
+  .movies-app {
+    width: auto;
+    padding-top: 5px;
+  }
 }

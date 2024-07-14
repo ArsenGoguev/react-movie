@@ -1,0 +1,28 @@
+.movie-list {
+  margin: 34px 0;
+  gap: 36px;
+}
+
+.movie-list--error {
+  margin: 24px 0;
+}
+
+.movie-list--not-found {
+  margin: 20px 0;
+}
+
+@media (max-width: 520px) {
+  .movie-list {
+    margin: 10px 0 20px;
+    gap: 20px;
+  }
+  
+  .movie-list--error {
+    width: auto;
+    margin-top: 20px;
+  }
+  
+  .movie-list--not-found {
+    margin: 10px 0;
+  }
+}

@@ -3,6 +3,7 @@ import { Tabs } from 'antd'
 
 import { getRatedMovies, getPopularMovies } from '../movieService/moviesAppService'
 import { MoviesAppContext } from '../Context/Context.js'
+import './tabMenu.css'
 
 export default function TabMenu() {
   const { setLoading, setSearchingMovie, setError, setCurrentPage, getData } = useContext(MoviesAppContext)
@@ -30,7 +31,7 @@ export default function TabMenu() {
   return (
     <Tabs
       destroyInactiveTabPane={false}
-      style={{ marginBottom: 10 }}
+      className="tab-menu"
       defaultActiveKey="1"
       centered
       onTabClick={(key) => onChangeTab(key)}

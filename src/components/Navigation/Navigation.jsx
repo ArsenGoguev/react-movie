@@ -43,7 +43,7 @@ export default function Navigation() {
         defaultCurrent={1}
         hideOnSinglePage
         pageSize={1}
-        total={error ? 1 : totalPages}
+        total={error ? 1 : totalPages > 500 ? 500 : totalPages}
         align="center"
         showSizeChanger={false}
         onChange={(page) => getMoviesByPage(page)}

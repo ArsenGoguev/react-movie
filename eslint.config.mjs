@@ -5,7 +5,6 @@ import globals from 'globals'
 import pluginJs from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier'
 import pluginImport from 'eslint-plugin-import'
-import prettier from 'eslint-plugin-prettier'
 import pluginReact from 'eslint-plugin-react'
 import babelParser from '@babel/eslint-parser'
 import { FlatCompat } from '@eslint/eslintrc'
@@ -42,7 +41,6 @@ export default [
   },
   {
     plugins: {
-      '@prettier': prettier,
       '@import': pluginImport,
       '@react': pluginReact,
     },
@@ -58,7 +56,6 @@ export default [
       'no-underscore-dangle': 0,
       'no-use-before-define': 0,
       'linebreak-style': [0, 'unix'],
-      '@prettier/prettier': 'error',
       'import/no-named-as-default': 0,
       'import/no-named-as-default-member': 0,
       'import/no-extraneous-dependencies': 0,

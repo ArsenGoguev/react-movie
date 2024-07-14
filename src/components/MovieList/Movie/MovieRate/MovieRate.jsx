@@ -3,11 +3,11 @@ import { ConfigProvider, Rate } from 'antd'
 import './movieRate.css'
 import PropTypes from 'prop-types'
 
-import { setMovieRating, deleteMovieRate } from '../../../../services/moviesAppService'
+import { setMovieRating, deleteMovieRate } from '../../../../services/moviesAppService.js'
 
 export default function MovieRate({ movie }) {
   const { id: movieID, rating } = movie
-  const [rate, setRate] = useState(rating ? rating : localStorage.getItem(movieID) ? localStorage.getItem(movieID) : 0)
+  const [rate, setRate] = useState(rating || (localStorage.getItem(movieID) ? localStorage.getItem(movieID) : 0))
 
   function onChangeRate(value) {
     if (value) {

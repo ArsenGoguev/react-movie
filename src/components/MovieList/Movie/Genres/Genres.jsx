@@ -9,7 +9,7 @@ export default function Genres({ genreIDs }) {
   const { genres } = useContext(MoviesAppContext)
 
   const elements = genreIDs.map((id) => {
-    const genre = genres.find((genre) => genre.id === id)
+    const genre = genres.find((gen) => gen.id === id)
 
     return (
       <Tag key={id} className="movie__genre">

@@ -24,11 +24,10 @@ export default function SearchBar() {
 
   if (searchingMovie === 'rated') {
     return null
-  } else {
-    return (
-      <Form className="search-bar">
-        <Input placeholder="Type to search..." onChange={(e) => getMoviesByQuery(e.target.value)} />
-      </Form>
-    )
   }
+  return (
+    <Form className="search-bar">
+      <Input placeholder="Type to search..." onChange={(e) => getMoviesByQuery(e.target.value)} />
+    </Form>
+  )
 }
